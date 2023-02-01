@@ -31,11 +31,6 @@ if app_mode=='Home':
 elif app_mode == 'Prediction':
     st.image('slider-short-3.jpg')
     st.subheader('YOU need to fill all necessary informations in order to get a reply to your loan request !')
-    st.sidebar.header("Informations about the client :")
-    gender_dict = {"Male":1,"Female":2}
-    feature_dict = {"No":1,"Yes":2}
-    edu={'Graduate':1,'Not Graduate':2}
-    prop={'Rural':1,'Urban':2,'Semiurban':3}
 
     SepalLengthCm = st.slider('SepalLengthCm:', 2.0, 6.0)
     SepalWidthCm = st.slider('SepalWidthCm:', 0.0, 5.0)
@@ -45,59 +40,28 @@ elif app_mode == 'Prediction':
             'SepalWidthCm': SepalWidthCm,
             'PetalLengthCm': PetalLengthCm,
             'PetalWidthCm': PetalWidthCm}
-    Gender=st.sidebar.radio('Gender',tuple(gender_dict.keys()))
-    Married=st.sidebar.radio('Married',tuple(feature_dict.keys()))
-    Self_Employed=st.sidebar.radio('Self Employed',tuple(feature_dict.keys()))
-    Dependents=st.sidebar.radio('Dependents',options=['0','1' , '2' , '3+'])
-    Education=st.sidebar.radio('Education',tuple(edu.keys()))
-    Property_Area=st.sidebar.radio('Property_Area',tuple(prop.keys()))
-    class_0 , class_3 , class_1,class_2 = 0,0,0,0 
-    if Dependents == '0':
-        class_0 = 1
-    elif Dependents == '1':
-        class_1 = 1
-    elif Dependents == '2' :
-        class_2 = 1
-    else:
-        class_3= 1
-    
-    Rural,Urban,Semiurban=0,0,0
-    if Property_Area == 'Urban' :
-        Urban = 1
-    elif Property_Area == 'Semiurban' :
-        Semiurban = 1
-    else :
-        Rural=1
- 
 
     data1={
-     'Gender':Gender,
-     'Married':Married,
-     'Dependents':[class_0,class_1,class_2,class_3],
-     'Education':Education,
      'SepalLengthCm':SepalLengthCm,
      'SepalWidthCm':SepalWidthCm,
      'PetalLengthCm':PetalLengthCm,
      'PetalWidthCm':PetalWidthCm,
-     'Self Employed':Self_Employed,
-     'Property_Area':[Rural,Urban,Semiurban],
     }
  
-    feature_list=[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,get_value(Gender,gender_dict),get_fvalue(Married),data1['Dependents'][0],data1['Dependents'][1],data1['Dependents'][2],data1['Dependents'][3],get_value(Education,edu),get_fvalue(Self_Employed),data1['Property_Area'][0],data1['Property_Area'][1],data1['Property_Area'][2]]
- 
+    feature_list=[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]
     single_sample = np.array(feature_list).reshape(1,-1)
     if st.button("Click to Predict"):
-     file_ = open("6m-rain.gif", "rb")
+     file_ = open("iris.jpg", "rb")
      contents = file_.read()
      data_url = base64.b64encode(contents).decode("utf-8")
      file_.close()
         
-     file = open("green-cola-no.gif", "rb")
+     file = open("iris.jpg", "rb")
      contents = file.read()
      data_url_no = base64.b64encode(contents).decode("utf-8")
      file.close()
         
-     loaded_model = pickle.load(open('Random_Forest.sav', 'rb'))
+     loaded_model = pickle.load(open('model.pkl', 'rb'))
      prediction = loaded_model.predict(single_sample)
      if prediction[0] == 0 :
          st.error(
