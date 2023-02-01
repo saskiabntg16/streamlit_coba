@@ -5,16 +5,6 @@ import pickle #to load a saved model
 import base64 #to open .gif files in streamlit app
 
 @st.cache(suppress_st_warning=True)
-def get_fvalue(val):
-    feature_dict = {"No":1,"Yes":2}
-    for key,value in feature_dict.items():
-        if val == key:
-            return value
-
-def get_value(val,my_dict):
-    for key,value in my_dict.items():
-        if val == key:
-            return value
         
 app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction']) #two pages
 
@@ -29,7 +19,6 @@ if app_mode=='Home':
 
 
 elif app_mode == 'Prediction':
-    st.image('slider-short-3.jpg')
     st.subheader('YOU need to fill all necessary informations in order to get a reply to your loan request !')
 
     SepalLengthCm = st.slider('SepalLengthCm:', 2.0, 6.0)
