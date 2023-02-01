@@ -11,6 +11,11 @@ if app_mode=='Home':
     df=pd.read_csv('iris.csv') #Read our data dataset
     st.write(df.head()) 
 
+    if app_mode=='Home': ## if someone selects the Home Tab
+st.title('Employee Prediction') ##Display text in title formatting
+st.markdown('Dataset :') ## Display string formatted as Markdown.
+st.write(df.head()) #write and display out dataset using the command df.head
+
     elif app_mode == 'Prediction':
 ## specify our inputs
     st.subheader('Fill in Iris to Get Prediction ')
