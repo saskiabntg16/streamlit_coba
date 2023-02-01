@@ -49,3 +49,14 @@ st.write(df.head()) #write and display out dataset using the command df.head
     features = [SepalLengthCm, SepalWidthCm, PetalLengthCm, PetalWidthCm, subdata['Iris'][0],subdata['Iris'][1], subdata['Iris'][2]]
 
     results = np.array(features).reshape(1, -1)
+
+    if st.button("Predict"):
+
+    picklefile = open("model.pkl", "rb")
+    model = pickle.load(picklefile)
+
+    prediction = model.predict(results)
+    if prediction[0] == 0:
+        st.success('Prediction Not Added')
+    elif prediction[0] == 1:
+        st.error( 'Prediction Added')
