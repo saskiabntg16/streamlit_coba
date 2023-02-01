@@ -21,12 +21,12 @@ data = {'SepalLengthCm': SepalLengthCm,
 
 features = pd.DataFrame(data, index=[0])
 
-pred_proba = model.pred_proba(features)
+predict = model.predict(features)
 
 st.subheader('Prediction Percentages:')
 
-st.write('**Probablity of Iris Class being Iris-setosa is ( in % )**:',pred_proba[0][0]*100)
-st.write('**Probablity of Isis Class being Iris-versicolor is ( in % )**:',pred_proba[0][1]*100)
-st.write('**Probablity of Isis Class being Iris-virginica ( in % )**:',pred_proba[0][2]*100)
+st.write('**Probablity of Iris Class being Iris-setosa is ( in % )**:',predict[0][0]*100)
+st.write('**Probablity of Isis Class being Iris-versicolor is ( in % )**:',predict[0][1]*100)
+st.write('**Probablity of Isis Class being Iris-virginica ( in % )**:',pred_predict[0][2]*100)
 
 
