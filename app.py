@@ -21,7 +21,7 @@ data = {'SepalLengthCm': SepalLengthCm,
 
 features = pd.DataFrame(data, index=[0])
 
-pred_proba = model.predict_proba(features)
+pred_proba = model.pred_proba(features)
 
 st.subheader('Prediction Percentages:')
 
